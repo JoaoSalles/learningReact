@@ -1,54 +1,102 @@
 'use strict';
 
+var appObject = {
+    title: 'Once upon time',
+    subtitle: 'English',
+    options: ['one', 'two']
+};
+
+function tamCodition(object) {
+    if (appObject.options && appObject.options.length > 0) {
+        return React.createElement(
+            'p',
+            null,
+            'Here are your options'
+        );
+    } else {
+        return React.createElement(
+            'p',
+            null,
+            'No options'
+        );
+    }
+}
+
 var template = React.createElement(
     'div',
     null,
     React.createElement(
-        'h1',
-        null,
-        'Indecision App'
-    ),
-    React.createElement(
-        'p',
-        null,
-        ' This is some info'
-    ),
-    React.createElement(
-        'ol',
+        'div',
         null,
         React.createElement(
-            'li',
+            'h1',
             null,
-            'Item one'
+            'Title: ',
+            appObject.title
         ),
-        React.createElement(
-            'li',
+        appObject.subtitle && React.createElement(
+            'p',
             null,
-            'Item two'
+            'Subtitle: ',
+            appObject.subtitle
+        ),
+        tamCodition(appObject),
+        React.createElement(
+            'ol',
+            null,
+            React.createElement(
+                'li',
+                null,
+                'Item one'
+            ),
+            React.createElement(
+                'li',
+                null,
+                'Item two'
+            )
         )
     )
 );
 
+var user = {
+    name: "Salles",
+    age: 25,
+    location: "Campinas"
+};
+
+function getLocation(location) {
+    if (location) {
+        return React.createElement(
+            'p',
+            null,
+            'Localization: ',
+            location
+        );
+    } else {
+        return React.createElement(
+            'p',
+            null,
+            'Localization: Unknown'
+        );
+    }
+}
 var templateTwo = React.createElement(
     'div',
     null,
     React.createElement(
         'h1',
         null,
-        'Salles'
+        user.name ? user.name : 'Anonymous'
     ),
-    React.createElement(
+    user.age && user.age >= 18 && React.createElement(
         'p',
         null,
-        'Age: 25'
+        'Age: ',
+        user.age
     ),
-    React.createElement(
-        'p',
-        null,
-        'Localization: Campinas'
-    )
+    getLocation(user.location)
 );
 
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(templateTwo, appRoot);
+ReactDOM.render(template, appRoot);
