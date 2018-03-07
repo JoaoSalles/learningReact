@@ -1,102 +1,44 @@
 'use strict';
 
-var appObject = {
-    title: 'Once upon time',
-    subtitle: 'English',
-    options: ['one', 'two']
+var appRoot = document.getElementById('app');
+
+var togleObject = {
+    toggleFlag: false,
+    text: 'Show'
 };
 
-function tamCodition(object) {
-    if (appObject.options && appObject.options.length > 0) {
-        return React.createElement(
-            'p',
-            null,
-            'Here are your options'
-        );
+var toggleP = function toggleP() {
+    togleObject.toggleFlag = !togleObject.toggleFlag;
+    if (togleObject.text == 'Show') {
+        togleObject.text = 'Hide';
     } else {
-        return React.createElement(
-            'p',
-            null,
-            'No options'
-        );
+        togleObject.text = 'Show';
     }
-}
+    render();
+};
 
-var template = React.createElement(
-    'div',
-    null,
-    React.createElement(
+var render = function render() {
+    var template = React.createElement(
         'div',
         null,
         React.createElement(
             'h1',
             null,
-            'Title: ',
-            appObject.title
+            'Visibility Toggle'
         ),
-        appObject.subtitle && React.createElement(
+        React.createElement(
+            'button',
+            { onClick: toggleP },
+            togleObject.text,
+            ' details'
+        ),
+        togleObject.toggleFlag ? React.createElement(
             'p',
             null,
-            'Subtitle: ',
-            appObject.subtitle
-        ),
-        tamCodition(appObject),
-        React.createElement(
-            'ol',
-            null,
-            React.createElement(
-                'li',
-                null,
-                'Item one'
-            ),
-            React.createElement(
-                'li',
-                null,
-                'Item two'
-            )
-        )
-    )
-);
-
-var user = {
-    name: "Salles",
-    age: 25,
-    location: "Campinas"
+            'This p is visible'
+        ) : undefined
+    );
+    ReactDOM.render(template, appRoot);
 };
 
-function getLocation(location) {
-    if (location) {
-        return React.createElement(
-            'p',
-            null,
-            'Localization: ',
-            location
-        );
-    } else {
-        return React.createElement(
-            'p',
-            null,
-            'Localization: Unknown'
-        );
-    }
-}
-var templateTwo = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        user.name ? user.name : 'Anonymous'
-    ),
-    user.age && user.age >= 18 && React.createElement(
-        'p',
-        null,
-        'Age: ',
-        user.age
-    ),
-    getLocation(user.location)
-);
-
-var appRoot = document.getElementById('app');
-
-ReactDOM.render(template, appRoot);
+render();
