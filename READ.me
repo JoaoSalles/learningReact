@@ -1,0 +1,36 @@
+INSTALLATION
+
+install node
+https://www.digitalocean.com/community/tutorials/como-instalar-o-node-js-no-ubuntu-16-04-pt
+
+install yarn
+- npm install -g yarn
+
+#### to make a server quick, most likely it will not be used in future
+
+- yarn global add live-server
+
+## To run live-server
+
+# public is the folder which contains index.html
+- live-server public
+
+
+### react and app scripts
+
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="./scripts/app.js"></script>
+
+### add babel # to accept javascript extension
+
+- yarn global add babel-cli@6.24.1
+- yarn init
+- yarn add babel-preset-react@6.24.1 babel-preset-env@1.5.2
+# converts the code in src/app.js and output it into public/app.js
+- babel src/app.js --out-file=public/scripts/app.js --presets=env,react
+
+# to automatic change app.js
+
+-babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
+
