@@ -1,0 +1,159 @@
+INSTALLATION
+
+install node
+https://www.digitalocean.com/community/tutorials/como-instalar-o-node-js-no-ubuntu-16-04-pt
+
+install yarn
+- npm install -g yarn
+
+#### to make a server quick, most likely it will not be used in future
+
+- yarn global add live-server
+
+## To run live-server
+
+# public is the folder which contains index.html
+- live-server public
+
+
+### react and app scripts
+
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="./scripts/app.js"></script>
+
+### add babel # to accept javascript extension
+### if yarn is not working change to npm
+
+- yarn global add babel-cli@6.24.1
+- yarn init
+- yarn add babel-preset-react@6.24.1 babel-preset-env@1.5.2
+# converts the code in src/app.js and output it into public/app.js
+- babel src/app.js --out-file=public/scripts/app.js --presets=env,react
+
+# to automatic change app.js
+
+-babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
+
+
+### dom elements in react
+
+- https://reactjs.org/docs/dom-elements.html
+
+
+### React dom events
+
+- https://reactjs.org/docs/events.html
+
+
+### Start using Webpack, it will not be necessary to use global babel and live-server anymore
+### if installed with yarn, use yarn to uninstall packages
+
+- sudo npm uninstall -g babel-cli live-server
+
+### Install babel-cli live-server locally, in your project
+
+- npm install babel-cli live-server
+
+### Set script to run babel and live-server
+## add this line in scripts of package.json
+
+-  "serve":"live-server public/"
+- "build-babel":"babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch"
+
+
+### Run the script
+
+- npm run serve
+- npm run build-babel
+
+
+### Install Webpack
+
+- npm install webpack@3.1.0
+
+## Add new script
+
+- "build": "webpack"
+
+## create a webpack config file in the same dir as package.json
+
+- file name: webpack.config.js
+
+## configure webpack.config
+
+- const path = require('path');
+- module.exports = {
+-   entry:'./src/app.js',
+-   output:{
+-       path: path.join(__dirname,"public"),
+-       filename: 'bundle.js'
+-   }
+-};
+
+## delete public/scripts dir
+## Remove script tags from /public/index.html 
+## add script for blundle.js
+
+- <script src="./bundle.js"></script>
+
+## add --watch in webpack script in pacjage.json
+
+
+### to solve import methods IDE problem add a file jsconfig.json in the same director as the js that you are working
+
+
+### make webpack work with es6
+
+- npm install babel-core@6.25.0 babel-loader@7.1.1
+
+### make changes in webpack.config related to loader
+
+### create file in the root .babelrc
+
+
+### create source map, settings devtool in webpack.config
+
+
+### change live-server to webpack server
+
+- npm install webpack-dev-server@2.5.1
+
+### add devServer on webpack.config and add new script on package.json
+
+
+## run dev-server to development, it does not generate bundle in persistent memory. it makes fast to change
+
+## run build to create a persistent bundle, makes fast to load
+
+
+
+### install new babel preset to free us of crating constructs for every class, and bind function with itself
+
+### instrall plugging
+
+- npm install babel-plugin-transform-class-properties@6.24.1
+
+
+### add plugin in babelrc
+
+
+
+### add third-party component
+
+## add react-modal
+
+- npm install react-modal@2.2.2
+
+
+
+#### Webpack load css packages
+
+- npm install style-loader@0.18.2 css-loader@0.28.4
+
+
+### read about resets in css
+
+## install normalize , which is a reseter
+
+-   npm install normize.css@7.0.0
