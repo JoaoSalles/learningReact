@@ -4,6 +4,7 @@ import IndecisionApp from './componets/Indecision';
 import 'normalize.css/normalize.css'
 import './styles/styles.scss';
 
+
 ReactDOM.render(
     (<IndecisionApp></IndecisionApp>), 
     document.getElementById('app')
