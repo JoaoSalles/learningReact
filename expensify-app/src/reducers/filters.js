@@ -1,6 +1,6 @@
+import moment from "moment";
 
-
-const filterReducer = (state = {text: '', sortBy: 'date', startDate: undefined, endDate: undefined}, action) => {
+const filterReducer = (state = {text: '', sortBy: 'date', startDate: moment().startOf("month"), endDate: moment().endOf("month")}, action) => {
     switch (action.type){
         case 'SET_TEXT_FILTER':
             return {
