@@ -6,13 +6,12 @@ import { startLogin } from '../actions/auth'
 const LoginComponent = ({ startLogin }) => {
 
     return (
-        <div>
-            {/* <form className="login-view" action="">
-                <input type="text" name="" id="username"/>
-                <input type="password" name="" id="password"/> */}
+        <div className="box-layout">
+            <div className="box-layout__box">
+                <h1 className="box-layout__title">Despesas</h1>
                 <button type="submit"
-                onClick={startLogin} >Submit</button>
-            {/* </form> */}
+                onClick={startLogin} className="button">Login com Google</button>
+            </div>
         </div>
     )
 }
