@@ -1,12 +1,7 @@
 import * as firebase from 'firebase';
 
 const config = {
-    apiKey: "AIzaSyD3O4h7v59gEkJTHnq0rE74bqTz1ht4lHM",
-    authDomain: "expensify-c4a47.firebaseapp.com",
-    databaseURL: "https://expensify-c4a47.firebaseio.com",
-    projectId: "expensify-c4a47",
-    storageBucket: "expensify-c4a47.appspot.com",
-    messagingSenderId: "399954482776"
+    
   };
 
 
