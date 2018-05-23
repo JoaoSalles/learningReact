@@ -19,6 +19,7 @@
     &:hover{
         background: $off-white;
     }
+    
 
     @media (min-width: 45rem){
         align-items: center;
@@ -42,14 +43,8 @@
 .list-item__title {
     margin: 0;
     word-break: break-all;
-}
-
-.list-item__title {
     color: $grey;
     font-size: $font-size-small;
-}
-
-.list-item__title {
     margin: $s-size 0 0 0;
 
     @media (min-width: 45rem){
@@ -58,7 +53,21 @@
     } 
 }
 
-.list-body {
+.list-item__subtitle {
+    margin: 0 0 0 0;
+
+    @media (min-width: 45rem){
+        margin: 0 0 0 $s-size;
+    } 
+}
+
+.list-footer {
+    background: $off-white;
+    border: 1px solid darken($off-white, 7%);
+    border-top: none;
+    color: $grey;
+    display: flex;
+    padding: $s-size $m-size;
     margin-bottom: $m-size;
 }
 

@@ -10,11 +10,17 @@ class ExpensesListFilter extends React.Component {
     };
     onDatesChange = ({startDate, endDate}) => {
         this.props.dispatch(setStartDate(startDate));
-        this.props.dispatch(setEndDate(endDate));
+        // I chose to add this limitation to make easir to sort in the chart
+        if (!endDate || (startDate.year() !== endDate.year())) {
+            this.props.dispatch(setEndDate(startDate));
+        } else {
+            this.props.dispatch(setEndDate(endDate));
+        }
     }
     onFocusChange = (calendarFocused) => {
         this.setState( () => ({calendarFocused}));
     }
+
     render() {
         return (
             <div className="content-conteiner">
@@ -50,7 +56,9 @@ class ExpensesListFilter extends React.Component {
                         focusedInput={this.state.calendarFocused} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
                         onFocusChange={this.onFocusChange} // PropTypes.func.isRequired,
                         numberOfMonths={1}
-                        isOutsideRange={ () => false}
+                        isOutsideRange={ () => {
+                            return false;
+                        }}
                         showClearDates={true}
                         />
                     </div>
@@ -64,7 +72,7 @@ class ExpensesListFilter extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        filters: state.filters
+        filters: state.filters,
     };
 }
 

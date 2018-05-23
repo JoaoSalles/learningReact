@@ -1,7 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import ExpenseListItem from './ExpenseListItem';
-import selectExpenses from '../selectors/expenses'
+import ChartComponent from './ChartComponent';
+import selectExpenses from '../selectors/expenses';
+import selectDataset from '../selectors/selectDataset';
+import selectDateRange from '../selectors/selectDateRange';
+import PaginationComponent from './PaginationComponent';
 
 const ExpenseList = (props) => (
     <div className="content-conteiner">
@@ -27,13 +31,35 @@ const ExpenseList = (props) => (
                 />)
             }))}
         </div>
+        <PaginationComponent/>
+        <ChartComponent
+        label={props.label}
+        dataset={props.dataset}
+        />
     </div>
 )
 
 
 const mapStateToProps = (state) => {
+    const expenses = selectExpenses(state.expenses, state.filters);
+    const dateRange = selectDateRange(expenses);
+    // sortByData
+    const dataset = selectDataset(expenses, dateRange);
+    let label;
+    if (dateRange < 10 ){
+        label = "por dia";
+    } else {
+        if (dateRange < 70) {
+            label = "por semana";
+        } else {
+            label = "por mes";
+        }
+    }
+    const totalExpense = expenses.length
     return {
-        expenses: selectExpenses(state.expenses, state.filters)
+        expenses: expenses,
+        dataset: dataset,
+        label: label
     }
 }
 
