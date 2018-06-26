@@ -13,6 +13,7 @@ const startAddExpense = (expenseData = {}) => {
             description = '',
             note = '',
             amount = 0,
+            payed = false,
             createdAt = 0
         } = expenseData;
         const expense = { description, note, amount, createdAt };
@@ -44,10 +45,9 @@ const startRemoveExpenses = ({id} = {}) => {
         });
     }
 };
-// edit expense
 
+// edit expense
 const editExpense = (id, updates) => {
-    debugger;
     return {
         type: "EDIT_EXPENSE",
         id,
@@ -71,7 +71,6 @@ const startEditExpenses = (id, expenseUpdated) => {
 }
 
 // set expenses
-
 const setExpenses = (expenses) => ({
     type: 'SET_EXPENSES',
     expenses
@@ -97,4 +96,24 @@ const startSetExpenses = () => {
 }
 
 
-export {addExpense, removeExpense, editExpense, startAddExpense , setExpenses, startSetExpenses , startRemoveExpenses, startEditExpenses}
+const setPayExpenses = (id, payed) => ({
+    type: 'PAY_EXPENSE',
+    id,
+    payed
+});
+
+
+const startSetPayExpenses = (id, payed = false) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/expenses/${id}`).update({
+            payed: payed
+        }).then( () =>
+            {
+            dispatch(setPayExpenses(id, payed));
+        });
+    }
+}
+
+
+export {addExpense, removeExpense, editExpense, startAddExpense , setExpenses, startSetExpenses , startRemoveExpenses, startEditExpenses, startSetPayExpenses}

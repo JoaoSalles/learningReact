@@ -9,7 +9,7 @@ const EditExpenseComponent = (props) => (
     <div>
         <div className="page-header">
             <div className="content-conteiner">
-                <h1 class="page-header__title">Editar Despesa</h1>
+                <h1 className="page-header__title">Editar Despesa</h1>
             </div>
         </div>
         <div className="content-conteiner">

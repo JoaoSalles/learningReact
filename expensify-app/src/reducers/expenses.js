@@ -6,6 +6,17 @@ const expensesReducer = (state = [], action) => {
             return [...state, action.expense]
         case 'REMOVE_EXPENSE':
             return state.filter( (expense) => ( expense.id !== action.id))
+        case 'PAY_EXPENSE': 
+            return state.map( (expense) => {
+                if (expense.id == action.id){
+                    expense.payed = action.payed
+                    return {
+                        ...expense
+                    }
+                } else {
+                    return expense;
+                }
+            });
         case 'EDIT_EXPENSE':
             return state.map( (expense) => {
                 if (expense.id == action.id){

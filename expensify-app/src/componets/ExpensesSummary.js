@@ -11,7 +11,7 @@ const ExpenseSummary = ({  expenseCount, expensesTotal}) => {
     return (
         <div className="page-header">
             <div className="content-conteiner">
-                <h1 className="page-header__title">Mostrando <span>{expenseCount}</span> {expenseWord} tolalizando <span>{formattedExpenseTotal}</span></h1>
+                <h1 className="page-header__title">Mostrando <span>{expenseCount}</span> {expenseWord} totalizando <span>{formattedExpenseTotal}</span></h1>
                 
                 <div className="page-header__actions">
                     <Link className="button" to="/create">Adicionar Despesa</Link>

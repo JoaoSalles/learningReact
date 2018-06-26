@@ -19,6 +19,10 @@
     &:hover{
         background: $off-white;
     }
+
+    &.payed {
+        background: #e6ffe6;
+    }
     
 
     @media (min-width: 45rem){
@@ -53,6 +57,14 @@
     } 
 }
 
+
+.list-item__check:checked {
+	background-color: #98dd1e;
+	border: 1px solid #adb8c0;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+    color: #99a1a7;
+}
+
 .list-item__subtitle {
     margin: 0 0 0 0;
 
@@ -69,5 +81,105 @@
     display: flex;
     padding: $s-size $m-size;
     margin-bottom: $m-size;
+    // justify-content: space-between;
+    padding: 0;
+
+    div {
+        width: 100%;
+        nav {
+            text-align:center;
+            margin: 0 25%;
+            button, span{
+                font-weight: 800;
+                font-size: $m-size;
+                color: darken($off-white, 20);
+                &.active {
+                    color: $grey;
+                }
+            @media (max-width: 65rem){
+                width: 10%;
+                margin: 5%;
+            } 
+            }
+        }
+    }
+    button {
+        width: 20%;
+        background: none;
+        width: $xxl-size;
+        margin: 0;
+        padding: 0;
+        border: none;
+        .fas {
+            font-size: $l-size;
+          }
+    }
 }
+
+
+
+
+/* The switch - the box around the slider */
+.switch {
+    float: right;
+    position: relative;
+    width: 40px;
+    height: 22px;
+
+    input {
+        display:none;
+    }
+  }
+  
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+
+    &:before {
+        position: absolute;
+        content: "";
+        height: 17px;
+        width: 17px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+    
+  }
+  
+  input:checked + .slider {
+    background-color: #98dd1e;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #98dd1e;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(16px);
+    -ms-transform: translateX(16px);
+    transform: translateX(16px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+
 
